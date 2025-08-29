@@ -15,46 +15,27 @@ Nu borde du vara reda att skriva nya tester och bygga ut din app.
 
 Om du vill använda din lokal databas för utveckling så måste du köra mongodb med i ett replica set för att Prisma ska fungera.
 
-### MacOS
+### Ändra konfigureringsfilen
 
-1. Stoppa MongoDB servicen
-   `brew services stop mongodb-community@8.0`
+**MacOS:** `code /opt/homebrew/etc/mongod.conf`
+**Windows:** `code "C:\Program Files\MongoDB\Server\8.0\bin\mongod.cfg"`
+**Linux:** `sudo code /etc/mongod.conf`
 
-2. Ändra konfigureringsfilen
-   `code /opt/homebrew/etc/mongod.conf`
-   och lägg till följande kod:
+Öppna filen och lägg till följande kod:
 
-   ```
-   replication:
-     replSetName: rs0
-   ```
+```yaml
+replication:
+  replSetName: rs0
+```
 
-3. Starta MongoDB servicen igen
-   `brew services start mongodb-community`
+### Starta om servicen
 
-4. Öppna mongosh och initiera replica set'et
-   - `mongosh`
-   - `rs.initiate()`
-   - `rs.status()` (valfritt)
+**MacOS:** `brew services restart mongodb-community@8.0`
+**Windows:** `Restart-Service "MongoDB"`
+**Linux:** `sudo systemctl restart mongod`
 
-## Windows
+### Initiera replica set'et
 
-1. Stoppa MongoDB servicen
-   `Stop-Service "MongoDB"`
+Starta Mongo shell'en `mongosh` i terminalen och initiera replica set'et `rs.initiate()`.
 
-2. Ändra konfigureringsfilen
-   `code "C:\Program Files\MongoDB\Server\8.0\bin\mongod.cfg"`
-   och lägg till följande kod:
-
-   ```
-   replication:
-     replSetName: rs0
-   ```
-
-3. Start MongoDB servicen igen
-   `Start-Service "MongoDB"`
-
-4. Öppna mongosh och initiera replica set'et
-   - `mongosh`
-   - `rs.initiate()`
-   - `rs.status()` (valfritt)
+Nu är du klar!
