@@ -1,4 +1,5 @@
 import { defineConfig } from "cypress";
+import { seedDatabase } from "./prisma/seed/seed-db";
 
 export default defineConfig({
   e2e: {
@@ -6,8 +7,6 @@ export default defineConfig({
     async setupNodeEvents(on) {
       on("task", {
         async reseed() {
-          // 👇 dynamisk import så rätt db-url används (se punkt 1)
-          const { seedDatabase } = await import("./prisma/seed/seed-db");
           await seedDatabase({ drop: true });
           return null;
         },
