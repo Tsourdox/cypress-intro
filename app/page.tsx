@@ -5,7 +5,8 @@ export default async function Home() {
   const todos = await db.todo.findMany();
 
   return (
-    <main>
+    <main className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Things todo</h1>
       <TodoList defaultTodos={todos} />
     </main>
   );
