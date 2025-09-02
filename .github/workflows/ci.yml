@@ -23,7 +23,7 @@ jobs:
       - name: Start MongoDB (replica set)
         uses: supercharge/mongodb-github-action@1.12.0
         with:
-          mongodb-version: 8.0
+          mongodb-version: 7.0
           mongodb-replica-set: "rs-test"
 
       - name: Install
@@ -31,6 +31,9 @@ jobs:
 
       - name: Cypress run (build + start)
         uses: cypress-io/github-action@v6
+        env:
+          NODE_ENV: test
+          DATABASE_URL: ${{ env.DATABASE_URL }}
         with:
           browser: chrome
           build: npm run build
