@@ -24,8 +24,4 @@ export async function seedTodos() {
       create: { id, ...todo },
     });
   }
-
-  const todos = await db.todo.findMany({});
-  console.log("SEEDED TODOS SUCCESSFULLY!");
-  console.log(todos);
 }

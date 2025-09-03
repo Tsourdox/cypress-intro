@@ -1,8 +1,4 @@
 describe("todo", () => {
-  beforeEach(() => {
-    cy.task("reseed");
-  });
-
   it("should display three todos by default", () => {
     cy.visit("/");
     cy.get("li").should("have.length", 3);
