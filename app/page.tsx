@@ -6,6 +6,7 @@ export default async function Home() {
 
   return (
     <main>
+      <h1>Things Todo</h1>
       <TodoList defaultTodos={todos} />
     </main>
   );

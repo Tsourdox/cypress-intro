@@ -10,7 +10,7 @@ jobs:
     env:
       NODE_ENV: test
       NEXT_TELEMETRY_DISABLED: 1
-      DATABASE_URL: mongodb://127.0.0.1:27017/testing
+      DATABASE_URL: "mongodb://127.0.0.1:27017/testing"
 
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +28,9 @@ jobs:
 
       - name: Install
         run: npm ci
+
+      - name: Seed Database
+        run: npm run seed
 
       - name: Cypress run (build + start)
         uses: cypress-io/github-action@v6
